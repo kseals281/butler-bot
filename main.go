@@ -52,8 +52,13 @@ func main() {
 	Session.State.User, err = Session.User("@me")
 	errCheck("error retrieving account", err)
 
-	Session.AddHandler(CommandHandler)
-	Session.AddHandler(func(discord *discordgo.Session, ready *discordgo.Ready) {
+	butler := new(Butler)
+	butler.loadButler(Session)
+
+	//fmt.Println(fmt.Sprintf("Butler knowledge main: %+v", butler.villains))
+
+	butler.discord.AddHandler(butler.CommandHandler)
+	butler.discord.AddHandler(func(discord *discordgo.Session, ready *discordgo.Ready) {
 		err = discord.UpdateStatus(0, "A friendly development bot!")
 		if err != nil {
 			fmt.Println("Error attempting to set my status")
@@ -63,8 +68,8 @@ func main() {
 	})
 
 	// Open a websocket connection to Discord
-	err = Session.Open()
-	defer Session.Close()
+	err = butler.discord.Open()
+	defer butler.discord.Close()
 	errCheck("Error opening connection to Discord", err)
 
 	<-interrupt
@@ -72,7 +77,13 @@ func main() {
 
 func errCheck(msg string, err error) {
 	if err != nil {
-		fmt.Printf("%s: %+v", msg, err)
+		log.Printf("%s: %+v", msg, err)
+	}
+}
+
+func panicCheck(msg string, err error) {
+	if err != nil {
+		log.Printf("%s: %+v", msg, err)
 		panic(err)
 	}
 }
