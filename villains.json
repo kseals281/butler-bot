@@ -3,84 +3,98 @@
     "name": "Bane",
     "bio": "The international masked criminal known as Bane has immense strength that comes from a super-steroid called Venom. Bane's raw power, coupled with his genius level intellect, makes him a considerable threat to Batman, having once succeeded in breaking Batman's back.",
     "debut": "Batman: Vengeance of Bane #1",
-    "debut_date": "January 1993"
+    "debut_date": "January 1993",
+    "url": "https://vignette.wikia.nocookie.net/batman/images/f/f0/Bane_TDKR3.jpg/revision/latest/top-crop/width/360/height/450?cb=20120511112335"
   },
   "catwoman": {
-    "name": "Selina Kyle",
+    "name": "Catwoman",
     "bio": "Selina Kyle is an accomplished jewel thief. Although traditionally considered a villain, she is often portrayed as an antihero. She also has an on-again, off-again romantic relationship with Batman.",
     "debut": "Batman #1",
-    "debut_date": "April 1940"
+    "debut_date": "April 1940",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Catwoman_cosplayer_%2833483657440%29_%28cropped%29.jpg"
   },
   "deadshot": {
-    "name": "Floyd Lawton",
+    "name": "Deadshot",
     "bio": "Floyd Lawton is an excellent sniper assassin who, when wielding a gun or projectile, never misses a shot. He is often considered to be the second-greatest assassin in the DC Universe, the first being Deathstroke the Terminator.",
     "debut": "Batman #59",
-    "debut_date": "June 1950"
+    "debut_date": "June 1950",
+    "url": ""
   },
   "deathstroke": {
-    "name": "Slade Wilson",
+    "name": "Deathstroke",
     "bio": "Slade Wilson is a ruthless metahuman mercenary and the world's greatest assassin, known to take on seemingly impossible jobs and the toughest targets as a personal challenge.",
     "debut": "New Teen Titans #2",
-    "debut_date": "June 1950"
+    "debut_date": "June 1950",
+    "url": ""
   },
   "firefly": {
-    "name": "Ted Carson",
+    "name": "Firefly",
     "bio": "Ted Carson was a man of wealth before he gambled away his fortune. Desperate, Carson turned to crime, becoming the second Firefly.",
     "debut": "Batman #126",
-    "debut_date": "September 1959"
+    "debut_date": "September 1959",
+    "url": ""
   },
   "harley quinn": {
-    "name": "Dr. Harleen Quinzel",
+    "name": "Harley Quinn",
     "bio": "Dr. Harleen Quinzel was the Joker's psychiatrist at Arkham Asylum until she fell in love with him and subsequently reinvented herself as his madcap sidekick, Harley Quinn. She is often mistreated by the Joker, but that rarely changes how she feels about him.",
     "debut": "The Batman Adventures #12",
-    "debut_date": "September 1993"
+    "debut_date": "September 1993",
+    "url": ""
   },
   "hugo strange": {
-    "name": "Dr. Hugo Strange",
+    "name": "Hugo Strange",
     "bio": "Professor Hugo Strange is an insane psychologist who uses his mastery of chemistry to create a serum that turns his victims into mindless monsters who obey his every command. He has succeeded in deducing that Batman is Bruce Wayne.",
     "debut": "Detective Comics #36",
-    "debut_date": "February 1940"
+    "debut_date": "February 1940",
+    "url": ""
   },
   "joker": {
     "name": "Joker",
     "bio": "The Joker is a homicidal maniac with a clown-like appearance, bent on creating havoc in Gotham City and fighting a never-ending battle against Batman. His arsenal of weapons includes razor-sharp playing cards, acid-squirting flowers, and fatal laughing gas. He is Batman's archenemy, as well as the most famous and recurring villain.",
     "debut": "Batman #1",
-    "debut_date": "April 1940"
+    "debut_date": "April 1940",
+    "url": "https://static01.nyt.com/images/2019/10/06/arts/06jokers-ranked-ledger/06jokers-ranked-ledger-videoSixteenByNineJumbo1600.jpg"
   },
   "killer moth": {
     "name": "Killer Moth",
     "bio": "Drury Walker, alias Cameron Van Cleer, is a moth-themed criminal, known for being the first villain to have been defeated by Batgirl.",
     "debut": "Batman #63",
-    "debut_date": "February 1951"
+    "debut_date": "February 1951",
+    "url": ""
   },
   "mister freeze": {
-    "name": "Dr. Victor Fries",
+    "name": "Mister Freeze",
     "bio": "Dr. Victor Fries is a scientist who accidentally spilled cryogenic chemicals on himself while inventing a freeze-gun. Now requiring subzero temperatures to survive, he uses freeze-inducing weaponry and must wear a fully contained, refrigerated ice-suit. Fries was later reinvented as a tragic figure and occasional antihero, specifically a brilliant cryogenicist whose beloved wife Nora fell terminally ill. He obsessively searched for a way to cure her, until an industrial accident caused by a greedy business executive turned Fries into a mutant who can only survive in subzero temperatures.",
     "debut": "Batman #121",
-    "debut_date": "February 1959"
+    "debut_date": "February 1959",
+    "url": ""
   },
   "penguin": {
-    "name": "Oswald Chesterfield Cobblepot",
+    "name": "Penguin",
     "bio": "Oswald Chesterfield Cobblepot is a devious, short-statured, penguin-themed crime boss who is seldom seen without at least one of his trick umbrellas. The Penguin uses his nightclub, the Iceberg Lounge, as a front for his criminal activities. He is one of Batman's few adversaries who is sane and in full control of his actions.",
     "debut": "Detective Comics #58",
-    "debut_date": "December 1941"
+    "debut_date": "December 1941",
+    "url": ""
   },
   "poison ivy": {
-    "name": "Pamela Lillian Isley",
+    "name": "Poison Ivy",
     "bio": "Pamela Lillian Isley, a former student of advanced botanical biochemistry, employs plants of all varieties and their derivatives in her crimes. She has the ability to control all plant life and can create new henchmen with her mutated seeds. She is immune to all plant-based poisons.",
     "debut": "Batman #181",
-    "debut_date": "June 1966"
+    "debut_date": "June 1966",
+    "url": ""
   },
   "riddler": {
-    "name": "Edward Nigma",
+    "name": "The Riddler",
     "bio": "Edward Nashton, a.k.a. Edward Nigma (\"E. Nigma\"), is a criminal mastermind who has a compulsion to challenge Batman by leaving clues to his crimes in the form of riddles, puzzles, and word-games. Nigma's intelligence rivals that of Batman. Nigma often carries a question mark-tipped cane around with him, as well as many other trick puzzle gimmicks.",
     "debut": "Detective Comics #140",
-    "debut_date": "October 1948"
+    "debut_date": "October 1948",
+    "url": ""
   },
   "two-face": {
-    "name": "Harvey Dent",
+    "name": "Two-Face",
     "bio": "Harvey Dent was a district attorney until half of his face was disfigured after being assaulted by mob boss Sal Maroni. Having developed dissociative identity disorder, Harvey Dent is obsessed with the number two and the concept of duality and must make most of his decisions with the flip of his signature coin: one side clean, the other side scarred. As Two-Face, Harvey Dent commits crimes that are themed around the number two and the concept of duality.",
     "debut": "Detective Comics #66",
-    "debut_date": "August 1942"
+    "debut_date": "August 1942",
+    "url": "https://1.bp.blogspot.com/-ZxRbvlvRtl8/VPTMm0F2mBI/AAAAAAAAypM/IMk6DW05xiE/s1600/DarkKnight_318Pyxurz.jpg"
   }
 }

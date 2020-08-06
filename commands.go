@@ -10,6 +10,8 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
+const custom = "1/2/06 3:04pm"
+
 func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	user := message.Author
 	botID := discord.State.User.ID
@@ -44,6 +46,7 @@ func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.M
 		if err != nil {
 			errCheck("Something went wrong. Unable to open oof file at this time", err)
 		} else {
+
 			defer f.Close()
 		}
 		ms := &discordgo.MessageSend{
@@ -64,9 +67,6 @@ func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.M
 
 	case s.HasPrefix(content, commandPrefix+"bio"):
 		b.biography(s.TrimPrefix(content, commandPrefix+"bio"), message.ChannelID)
-
-		//case s.HasPrefix(content, commandPrefix+"remindMe"):
-		//    b.newReminder(s.TrimPrefix(content, commandPrefix+"remindMe"))
 	}
 }
 
@@ -100,14 +100,11 @@ func (b *Butler) knownVillains(chID string) {
 }
 
 func (b *Butler) biography(name string, chID string) {
-	var msg string
 	name = s.TrimSpace(name)
 	villain, ok := b.villains[s.ToLower(name)]
 	if !ok {
-		msg = fmt.Sprintf("I'm afraid that I have no knowledge of %s.", name)
-	} else {
-		msg = fmt.Sprintf("Here's what I currently know about %s: %s", s.Title(name), villain.Bio)
+		return
 	}
-	_, err := b.discord.ChannelMessageSend(chID, msg)
+	err := b.sendMessage(villain, chID)
 	errCheck("error sending bio", err)
 }

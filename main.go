@@ -59,7 +59,7 @@ func main() {
 
 	butler.discord.AddHandler(butler.CommandHandler)
 	butler.discord.AddHandler(func(discord *discordgo.Session, ready *discordgo.Ready) {
-		err = discord.UpdateStatus(0, "A friendly development bot!")
+		err = discord.UpdateStatus(0, "At your service.")
 		if err != nil {
 			fmt.Println("Error attempting to set my status")
 		}
