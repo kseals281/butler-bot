@@ -18,35 +18,35 @@
     "bio": "Floyd Lawton is an excellent sniper assassin who, when wielding a gun or projectile, never misses a shot. He is often considered to be the second-greatest assassin in the DC Universe, the first being Deathstroke the Terminator.",
     "debut": "Batman #59",
     "debut_date": "June 1950",
-    "url": ""
+    "url": "https://upload.wikimedia.org/wikipedia/en/8/8d/A_prime_pic_of_Deadshot.png"
   },
   "deathstroke": {
     "name": "Deathstroke",
     "bio": "Slade Wilson is a ruthless metahuman mercenary and the world's greatest assassin, known to take on seemingly impossible jobs and the toughest targets as a personal challenge.",
     "debut": "New Teen Titans #2",
     "debut_date": "June 1950",
-    "url": ""
+    "url": "https://i.pinimg.com/736x/e8/c4/b0/e8c4b00636003eb42c6eda2d6c63b334.jpg"
   },
   "firefly": {
     "name": "Firefly",
     "bio": "Ted Carson was a man of wealth before he gambled away his fortune. Desperate, Carson turned to crime, becoming the second Firefly.",
     "debut": "Batman #126",
     "debut_date": "September 1959",
-    "url": ""
+    "url": "https://vignette.wikia.nocookie.net/villains/images/d/d8/Firefly_Arkham_Origins.png/revision/latest?cb=20131112014853"
   },
   "harley quinn": {
     "name": "Harley Quinn",
     "bio": "Dr. Harleen Quinzel was the Joker's psychiatrist at Arkham Asylum until she fell in love with him and subsequently reinvented herself as his madcap sidekick, Harley Quinn. She is often mistreated by the Joker, but that rarely changes how she feels about him.",
     "debut": "The Batman Adventures #12",
     "debut_date": "September 1993",
-    "url": ""
+    "url": "https://img1.looper.com/img/gallery/the-dark-history-of-harley-quinn-upgrade/intro-1578604601.jpg"
   },
   "hugo strange": {
     "name": "Hugo Strange",
     "bio": "Professor Hugo Strange is an insane psychologist who uses his mastery of chemistry to create a serum that turns his victims into mindless monsters who obey his every command. He has succeeded in deducing that Batman is Bruce Wayne.",
     "debut": "Detective Comics #36",
     "debut_date": "February 1940",
-    "url": ""
+    "url": "https://d13ezvd6yrslxm.cloudfront.net/wp/wp-content/images/ZZ39127B53.jpg"
   },
   "joker": {
     "name": "Joker",
@@ -60,35 +60,35 @@
     "bio": "Drury Walker, alias Cameron Van Cleer, is a moth-themed criminal, known for being the first villain to have been defeated by Batgirl.",
     "debut": "Batman #63",
     "debut_date": "February 1951",
-    "url": ""
+    "url": "https://upload.wikimedia.org/wikipedia/en/3/3c/Killer_Moth_%28DC_Comics_character%29.jpg"
   },
   "mister freeze": {
     "name": "Mister Freeze",
     "bio": "Dr. Victor Fries is a scientist who accidentally spilled cryogenic chemicals on himself while inventing a freeze-gun. Now requiring subzero temperatures to survive, he uses freeze-inducing weaponry and must wear a fully contained, refrigerated ice-suit. Fries was later reinvented as a tragic figure and occasional antihero, specifically a brilliant cryogenicist whose beloved wife Nora fell terminally ill. He obsessively searched for a way to cure her, until an industrial accident caused by a greedy business executive turned Fries into a mutant who can only survive in subzero temperatures.",
     "debut": "Batman #121",
     "debut_date": "February 1959",
-    "url": ""
+    "url": "https://upload.wikimedia.org/wikipedia/en/1/10/Mr._Freeze_Batman_Annual_Vol_2_1.png"
   },
   "penguin": {
     "name": "Penguin",
     "bio": "Oswald Chesterfield Cobblepot is a devious, short-statured, penguin-themed crime boss who is seldom seen without at least one of his trick umbrellas. The Penguin uses his nightclub, the Iceberg Lounge, as a front for his criminal activities. He is one of Batman's few adversaries who is sane and in full control of his actions.",
     "debut": "Detective Comics #58",
     "debut_date": "December 1941",
-    "url": ""
+    "url": "https://upload.wikimedia.org/wikipedia/en/f/f2/Penguin_%28Oswald_Cobblepot%29.png"
   },
   "poison ivy": {
     "name": "Poison Ivy",
     "bio": "Pamela Lillian Isley, a former student of advanced botanical biochemistry, employs plants of all varieties and their derivatives in her crimes. She has the ability to control all plant life and can create new henchmen with her mutated seeds. She is immune to all plant-based poisons.",
     "debut": "Batman #181",
     "debut_date": "June 1966",
-    "url": ""
+    "url": "https://i.ytimg.com/vi/AowORQCbMGA/maxresdefault.jpg"
   },
   "riddler": {
     "name": "The Riddler",
     "bio": "Edward Nashton, a.k.a. Edward Nigma (\"E. Nigma\"), is a criminal mastermind who has a compulsion to challenge Batman by leaving clues to his crimes in the form of riddles, puzzles, and word-games. Nigma's intelligence rivals that of Batman. Nigma often carries a question mark-tipped cane around with him, as well as many other trick puzzle gimmicks.",
     "debut": "Detective Comics #140",
     "debut_date": "October 1948",
-    "url": ""
+    "url": "https://qph.fs.quoracdn.net/main-qimg-65139eba1692b80f747131be9507ebd7"
   },
   "two-face": {
     "name": "Two-Face",
@@ -96,5 +96,12 @@
     "debut": "Detective Comics #66",
     "debut_date": "August 1942",
     "url": "https://1.bp.blogspot.com/-ZxRbvlvRtl8/VPTMm0F2mBI/AAAAAAAAypM/IMk6DW05xiE/s1600/DarkKnight_318Pyxurz.jpg"
+  },
+  "victor zsasz": {
+    "name": "Victor Zsasz",
+    "bio": "Victor Zsasz is a serial killer whose modus operandi involves slitting the throats of his victims, then arranging the bodies in lifelike poses, such as a family watching TV or several people playing poker. He cuts a tally mark onto his own body for each of his victims.",
+    "debut": "Batman: Shadow of the Bat #1",
+    "debut_date": "June 1992",
+    "url": "https://upload.wikimedia.org/wikipedia/en/9/9b/StreetsOfGotham4.jpg"
   }
 }

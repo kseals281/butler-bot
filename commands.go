@@ -2,12 +2,11 @@ package main
 
 import (
 	"fmt"
+	"github.com/bwmarrin/discordgo"
 	"log"
 	"os"
 	"sort"
 	s "strings"
-
-	"github.com/bwmarrin/discordgo"
 )
 
 const custom = "1/2/06 3:04pm"
@@ -33,20 +32,13 @@ func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.M
 		b.hello(member, message.ChannelID)
 
 	case s.HasPrefix(content, commandPrefix+"commands"):
-		_, err := discord.ChannelMessageSend(message.ChannelID,
-			"__**Command List**__\n"+
-				"`hello: Alfred returns a greeting`\n"+
-				"`commands: Alfred returns all valid commands\n"+
-				"`oof: Alfred replies with a big oof`\n"+
-				"`remindMe: Butler-Bot takes in a reminder for a set date and time. Format must strictly follow this example: *your message here* - Jan 2, 2006 at 3:04pm (MST)`\n")
-		errCheck("Failed to send list of commands", err)
+		b.commands(member, message.ChannelID)
 
 	case s.HasPrefix(content, commandPrefix+"oof"):
 		f, err := os.Open("oof.png")
 		if err != nil {
 			errCheck("Something went wrong. Unable to open oof file at this time", err)
 		} else {
-
 			defer f.Close()
 		}
 		ms := &discordgo.MessageSend{
@@ -71,31 +63,80 @@ func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.M
 }
 
 func (b *Butler) hello(member *discordgo.Member, chID string) {
-	m := fmt.Sprintf("Good evening master %s.", member.Nick)
-	_, err := b.discord.ChannelMessageSend(chID, m)
+	e := b.createEmbed(fmt.Sprintf("Good evening master %s.", member.Nick))
+	_, err := b.discord.ChannelMessageSendEmbed(chID, e)
 	errCheck("", err)
+}
+
+func (b *Butler) commands(member *discordgo.Member, chID string) {
+	commands := []*discordgo.MessageEmbedField{
+		{
+			Name:   "bio",
+			Value:  "`bio <name>`\tLearn about a character",
+			Inline: false,
+		}, {
+			Name:   "commands",
+			Value:  "Get a list of commands",
+			Inline: false,
+		}, {
+			Name:   "hello",
+			Value:  "Receive a greeting",
+			Inline: false,
+		}, {
+			Name:   "oof",
+			Value:  fmt.Sprintf("Big oof, Master %s", member.Nick),
+			Inline: false,
+		}, {
+			Name:   "villains",
+			Value:  "List all currently known villains",
+			Inline: false,
+		},
+	}
+
+	embed := &discordgo.MessageEmbed{
+		Title:       "Commands",
+		Description: "All phrases I will respond to if prefixed by !",
+		Footer: &discordgo.MessageEmbedFooter{
+			Text:    "Please leave all suggestions in butler-suggestions",
+			IconURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/200px-Question_mark_%28black%29.svg.png",
+		},
+		Author: EmbedAuthor,
+		Fields: commands,
+	}
+
+	_, err := b.discord.ChannelMessageSendEmbed(chID, embed)
+	errCheck("unable to send commands", err)
 }
 
 func (b *Butler) knownVillains(chID string) {
 	var villainNames []string
-
 	for name := range b.villains {
 		villainNames = append(villainNames, s.TrimSpace(name))
 	}
 	sort.Strings(villainNames)
 
-	fmtVillainNames := ""
+	var embedVillainNames []*discordgo.MessageEmbedField
 
 	for i, n := range villainNames {
-		if i == 0 {
-			fmtVillainNames = s.Title(n)
-			continue
+		curr := &discordgo.MessageEmbedField{
+			Name:   fmt.Sprintf("%d.", i+1),
+			Value:  s.Title(n),
+			Inline: true,
 		}
-		fmtVillainNames += fmt.Sprintf(", %s", s.Title(n))
+		embedVillainNames = append(embedVillainNames, curr)
 	}
 
-	msg := fmt.Sprintf("Here is a list of all currently known villians: %+v", fmtVillainNames)
-	_, err := b.discord.ChannelMessageSend(chID, msg)
+	embed := &discordgo.MessageEmbed{
+		Title:       "Villains",
+		Description: "Here is a list of all currently known villains.",
+		Footer: &discordgo.MessageEmbedFooter{
+			Text:    "To view all commands type !commands",
+			IconURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/200px-Question_mark_%28black%29.svg.png",
+		},
+		Author: EmbedAuthor,
+		Fields: embedVillainNames,
+	}
+	_, err := b.discord.ChannelMessageSendEmbed(chID, embed)
 	errCheck("error sending list of villains", err)
 }
 

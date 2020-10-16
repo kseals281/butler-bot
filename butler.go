@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"io/ioutil"
+	s "strings"
 	"time"
 )
 
@@ -19,7 +20,7 @@ type Message interface {
 
 type Butler struct {
 	discord         *discordgo.Session
-	activeReminders []Reminders
+	activeReminders []Reminder
 	villains        map[string]Villain
 }
 
@@ -32,10 +33,12 @@ type Villain struct {
 	URL       string `json:"url,omitempty"`
 }
 
-type Reminders struct {
-	msg  string
-	time time.Time
-	usr  *discordgo.User
+type Reminder struct {
+	time    time.Time
+	msg     string
+	chID    string
+	usr     *discordgo.User
+	created time.Time
 }
 
 func (b *Butler) loadButler(s *discordgo.Session) {
@@ -57,19 +60,20 @@ func (b *Butler) sendMessage(m Message, chID string) error {
 	return nil
 }
 
-func (b Butler) createEmbed() *discordgo.MessageEmbed {
-	embed := new(discordgo.MessageEmbed)
-	embed.Author = EmbedAuthor
+func (b Butler) createEmbed(msg string) *discordgo.MessageEmbed {
+	embed := &discordgo.MessageEmbed{
+		Title:  s.Title(msg),
+		Footer: &discordgo.MessageEmbedFooter{Text: "To view all commands type !commands"},
+		Author: EmbedAuthor,
+	}
 
 	return embed
 }
 
 func (v Villain) createEmbed() *discordgo.MessageEmbed {
 	embed := &discordgo.MessageEmbed{
-		Author:      EmbedAuthor,
-		Title:       "v.Name",
-		Description: "v.Bio",
-		Timestamp:   time.Now().Format(custom),
+		Title:       v.Name,
+		Description: v.Bio,
 		Footer: &discordgo.MessageEmbedFooter{
 			Text:    fmt.Sprintf("%s debuted in %s, %s", v.Name, v.Debut, v.DebutDate),
 			IconURL: "https://cdn.shopify.com/s/files/1/1045/2900/products/Batman-Symbol_grande.png?v=1587567739",
@@ -78,12 +82,13 @@ func (v Villain) createEmbed() *discordgo.MessageEmbed {
 			URL: v.URL,
 		},
 		Thumbnail: nil,
+		Author:    EmbedAuthor,
 	}
 
 	return embed
 }
 
-func (r Reminders) createEmbed() *discordgo.MessageEmbed {
+func (r Reminder) createEmbed() *discordgo.MessageEmbed {
 	embed := new(discordgo.MessageEmbed)
 	embed.Author = EmbedAuthor
 
