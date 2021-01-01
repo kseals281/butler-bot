@@ -10,8 +10,6 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-const custom = "1/2/06 3:04pm"
-
 func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	user := message.Author
 	botID := discord.State.User.ID
@@ -71,8 +69,8 @@ func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.M
 }
 
 func (b *Butler) hello(member *discordgo.Member, chID string) {
-	m := fmt.Sprintf("Good evening master %s.", member.Nick)
-	_, err := b.discord.ChannelMessageSend(chID, m)
+	msg := fmt.Sprintf("Good evening master %s.", member.Nick)
+	err := b.sendMessage(String(msg), chID)
 	errCheck("", err)
 }
 
@@ -95,7 +93,7 @@ func (b *Butler) knownVillains(chID string) {
 	}
 
 	msg := fmt.Sprintf("Here is a list of all currently known villians: %+v", fmtVillainNames)
-	_, err := b.discord.ChannelMessageSend(chID, msg)
+	err := b.sendMessage(String(msg), chID)
 	errCheck("error sending list of villains", err)
 }
 

@@ -13,6 +13,8 @@ var EmbedAuthor = &discordgo.MessageEmbedAuthor{
 	IconURL: "https://img1.looper.com/img/uploads/2018/05/alfred-pennyworth-batman-animated-series-2.jpg",
 }
 
+type String string
+
 type Message interface {
 	createEmbed() *discordgo.MessageEmbed
 }
@@ -52,24 +54,27 @@ func (b *Butler) loadVillains() {
 }
 
 func (b *Butler) sendMessage(m Message, chID string) error {
-	_, err := b.discord.ChannelMessageSendEmbed(chID, m.createEmbed())
+	embed := m.createEmbed()
+	embed.Author = EmbedAuthor
+	_, err := b.discord.ChannelMessageSendEmbed(chID, embed)
 	errCheck("error sending message", err)
 	return nil
 }
 
-func (b Butler) createEmbed() *discordgo.MessageEmbed {
+func (s String) createEmbed() *discordgo.MessageEmbed {
 	embed := new(discordgo.MessageEmbed)
-	embed.Author = EmbedAuthor
-
+	embed.Description = string(s)
+	embed.Footer = &discordgo.MessageEmbedFooter{
+		Text: "Alfred is a work in progress.",
+	}
 	return embed
 }
 
 func (v Villain) createEmbed() *discordgo.MessageEmbed {
 	embed := &discordgo.MessageEmbed{
 		Author:      EmbedAuthor,
-		Title:       "v.Name",
-		Description: "v.Bio",
-		Timestamp:   time.Now().Format(custom),
+		Title:       v.Name,
+		Description: v.Bio,
 		Footer: &discordgo.MessageEmbedFooter{
 			Text:    fmt.Sprintf("%s debuted in %s, %s", v.Name, v.Debut, v.DebutDate),
 			IconURL: "https://cdn.shopify.com/s/files/1/1045/2900/products/Batman-Symbol_grande.png?v=1587567739",
