@@ -22,6 +22,7 @@ type Message interface {
 type Butler struct {
 	discord         *discordgo.Session
 	activeReminders []Reminders
+	activeRPSGames  []RPSGame
 	villains        map[string]Villain
 }
 
@@ -53,12 +54,19 @@ func (b *Butler) loadVillains() {
 	panicCheck("error unmarshalling villain json data", err)
 }
 
-func (b *Butler) sendMessage(m Message, chID string) error {
+func (b *Butler) nickname(guildID, userID string) string {
+	member, err := b.discord.GuildMember(guildID, userID)
+	errCheck("unable to get nickname: %v", err)
+	return member.Nick
+
+}
+
+func (b *Butler) sendMessage(m Message, chID string) (*discordgo.Message, error) {
 	embed := m.createEmbed()
 	embed.Author = EmbedAuthor
-	_, err := b.discord.ChannelMessageSendEmbed(chID, embed)
+	msg, err := b.discord.ChannelMessageSendEmbed(chID, embed)
 	errCheck("error sending message", err)
-	return nil
+	return msg, nil
 }
 
 func (s String) createEmbed() *discordgo.MessageEmbed {
@@ -89,9 +97,15 @@ func (v Villain) createEmbed() *discordgo.MessageEmbed {
 }
 
 func (r Reminders) createEmbed() *discordgo.MessageEmbed {
-	embed := new(discordgo.MessageEmbed)
-	embed.Author = EmbedAuthor
-
+	embed := &discordgo.MessageEmbed{
+		Title:       "",
+		Description: "",
+		Timestamp:   "",
+		Color:       0,
+		Footer:      nil,
+		Image:       nil,
+		Thumbnail:   nil,
+	}
 	embed.Title = fmt.Sprintf("You wanted me to remind you, Master %s.", r.usr.Mention())
 	embed.Description = r.msg
 	embed.Thumbnail = &discordgo.MessageEmbedThumbnail{
@@ -100,3 +114,9 @@ func (r Reminders) createEmbed() *discordgo.MessageEmbed {
 
 	return embed
 }
+
+//func (rps RPSGame) createEmbed() *discordgo.MessageEmbed {
+//	embed := &discordgo.MessageEmbed{
+//		Title: fmt.Sprintf(),
+//	}
+//}

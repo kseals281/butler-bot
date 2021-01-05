@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"sort"
 	s "strings"
@@ -17,10 +16,6 @@ func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.M
 		//Do nothing because the bot is talking
 		return
 	}
-	member, err := discord.GuildMember(message.GuildID, message.Author.ID)
-	if err != nil {
-		log.Printf("unable to get guild information for author: %+v", err)
-	}
 
 	commandPrefix := "!"
 	content := message.Content
@@ -28,15 +23,16 @@ func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.M
 	switch {
 
 	case s.HasPrefix(content, commandPrefix+"hello"):
-		b.hello(member, message.ChannelID)
+		b.hello(b.nickname(message.GuildID, user.ID), message.ChannelID)
 
 	case s.HasPrefix(content, commandPrefix+"commands"):
-		_, err := discord.ChannelMessageSend(message.ChannelID,
+		_, err := b.sendMessage(String(
 			"__**Command List**__\n"+
 				"`hello: Alfred returns a greeting`\n"+
-				"`commands: Alfred returns all valid commands\n"+
+				"`commands: Alfred returns all valid commands`\n"+
 				"`oof: Alfred replies with a big oof`\n"+
-				"`remindMe: Butler-Bot takes in a reminder for a set date and time. Format must strictly follow this example: *your message here* - Jan 2, 2006 at 3:04pm (MST)`\n")
+				"`villains: All known villains are listed.`\n"+
+				"`bio <villain>: Information on given villain.`"), message.ChannelID)
 		errCheck("Failed to send list of commands", err)
 
 	case s.HasPrefix(content, commandPrefix+"oof"):
@@ -65,12 +61,16 @@ func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.M
 
 	case s.HasPrefix(content, commandPrefix+"bio"):
 		b.biography(s.TrimPrefix(content, commandPrefix+"bio"), message.ChannelID)
+
+	case s.HasPrefix(content, commandPrefix+"rps"):
+		go b.RPSHandler(message)
+
 	}
 }
 
-func (b *Butler) hello(member *discordgo.Member, chID string) {
-	msg := fmt.Sprintf("Good evening master %s.", member.Nick)
-	err := b.sendMessage(String(msg), chID)
+func (b *Butler) hello(user, chID string) {
+	msg := fmt.Sprintf("Good evening master %s.", user)
+	_, err := b.sendMessage(String(msg), chID)
 	errCheck("", err)
 }
 
@@ -93,7 +93,7 @@ func (b *Butler) knownVillains(chID string) {
 	}
 
 	msg := fmt.Sprintf("Here is a list of all currently known villians: %+v", fmtVillainNames)
-	err := b.sendMessage(String(msg), chID)
+	_, err := b.sendMessage(String(msg), chID)
 	errCheck("error sending list of villains", err)
 }
 
@@ -103,6 +103,6 @@ func (b *Butler) biography(name string, chID string) {
 	if !ok {
 		return
 	}
-	err := b.sendMessage(villain, chID)
+	_, err := b.sendMessage(villain, chID)
 	errCheck("error sending bio", err)
 }
