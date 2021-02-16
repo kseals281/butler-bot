@@ -10,6 +10,8 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
+const CommandPrefix = "!"
+
 func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	user := message.Author
 	botID := discord.State.User.ID
@@ -22,18 +24,17 @@ func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.M
 		log.Printf("unable to get guild information for author: %+v", err)
 	}
 
-	commandPrefix := "!"
 	content := message.Content
 
 	switch {
 
-	case s.HasPrefix(content, commandPrefix+"hello"):
+	case s.HasPrefix(content, CommandPrefix+"hello"):
 		b.hello(member, message.ChannelID)
 
-	case s.HasPrefix(content, commandPrefix+"commands"):
+	case s.HasPrefix(content, CommandPrefix+"commands"):
 		b.commands(member, message.ChannelID)
 
-	case s.HasPrefix(content, commandPrefix+"oof"):
+	case s.HasPrefix(content, CommandPrefix+"oof"):
 		f, err := os.Open("oof.png")
 		if err != nil {
 			errCheck("Something went wrong. Unable to open oof file at this time", err)
@@ -53,11 +54,11 @@ func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.M
 			errCheck("Unable to send oof to channel", err)
 		}
 
-	case s.HasPrefix(content, commandPrefix+"villains"):
+	case s.HasPrefix(content, CommandPrefix+"villains"):
 		b.knownVillains(message.ChannelID)
 
-	case s.HasPrefix(content, commandPrefix+"bio"):
-		b.biography(s.TrimPrefix(content, commandPrefix+"bio"), message.ChannelID)
+	case s.HasPrefix(content, CommandPrefix+"bio"):
+		b.biography(s.TrimPrefix(content, CommandPrefix+"bio"), message.ChannelID)
 
 	}
 }
@@ -95,7 +96,7 @@ func (b *Butler) commands(member *discordgo.Member, chID string) {
 
 	embed := &discordgo.MessageEmbed{
 		Title:       "Commands",
-		Description: "All phrases I will respond to if prefixed by !",
+		Description: fmt.Sprintf("All phrases I will respond to if prefixed by %s", CommandPrefix),
 		Footer: &discordgo.MessageEmbedFooter{
 			Text:    "Please leave all suggestions in butler-suggestions",
 			IconURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/200px-Question_mark_%28black%29.svg.png",
