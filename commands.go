@@ -35,8 +35,7 @@ func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.M
 			"__**Command List**__\n"+
 				"`hello: Alfred returns a greeting`\n"+
 				"`commands: Alfred returns all valid commands\n"+
-				"`oof: Alfred replies with a big oof`\n"+
-				"`remindMe: Butler-Bot takes in a reminder for a set date and time. Format must strictly follow this example: *your message here* - Jan 2, 2006 at 3:04pm (MST)`\n")
+				"`oof: Alfred replies with a big oof`\n")
 		errCheck("Failed to send list of commands", err)
 
 	case s.HasPrefix(content, commandPrefix+"oof"):
@@ -65,14 +64,12 @@ func (b *Butler) CommandHandler(discord *discordgo.Session, message *discordgo.M
 	case s.HasPrefix(content, commandPrefix+"bio"):
 		b.biography(s.TrimPrefix(content, commandPrefix+"bio"), message.ChannelID)
 
-		//case s.HasPrefix(content, commandPrefix+"remindMe"):
-		//    b.newReminder(s.TrimPrefix(content, commandPrefix+"remindMe"))
 	}
 }
 
 func (b *Butler) hello(member *discordgo.Member, chID string) {
 	m := fmt.Sprintf("Good evening master %s.", member.Nick)
-	_, err := b.discord.ChannelMessageSend(chID, m)
+	_, err := b.sendMessage(String(m), chID)
 	errCheck("", err)
 }
 
@@ -100,14 +97,11 @@ func (b *Butler) knownVillains(chID string) {
 }
 
 func (b *Butler) biography(name string, chID string) {
-	var msg string
 	name = s.TrimSpace(name)
 	villain, ok := b.villains[s.ToLower(name)]
 	if !ok {
-		msg = fmt.Sprintf("I'm afraid that I have no knowledge of %s.", name)
-	} else {
-		msg = fmt.Sprintf("Here's what I currently know about %s: %s", s.Title(name), villain.Bio)
+		return
 	}
-	_, err := b.discord.ChannelMessageSend(chID, msg)
+	_, err := b.sendMessage(villain, chID)
 	errCheck("error sending bio", err)
 }
